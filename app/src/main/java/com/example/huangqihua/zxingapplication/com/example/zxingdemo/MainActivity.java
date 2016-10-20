@@ -41,21 +41,6 @@ public class MainActivity extends Activity {
 		scanner = (Button) findViewById(R.id.ECoder_scaning);
 		qrCodeUrl = (EditText) findViewById(R.id.ECoder_input);
 
-//		creator.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View arg0) {
-//
-//				String url = qrCodeUrl.getText().toString();
-//				try {
-//					Bitmap bitmap = CodeCreator.createQRCode(url);
-//					qrCodeImage.setImageBitmap(bitmap);
-//				} catch (WriterException e) {
-//					e.printStackTrace();
-//				}
-//
-//			}
-//		});
 
 		scanner.setOnClickListener(new OnClickListener() {
 
@@ -78,7 +63,6 @@ public class MainActivity extends Activity {
 			if (data != null) {
 
 				String content = data.getStringExtra(DECODED_CONTENT_KEY);
-//				String url = getUrl(content);
 				if (isNormalUrl(content)){
 					openWebView(content);
 				}else {
@@ -100,14 +84,6 @@ public class MainActivity extends Activity {
 
 	}
 
-
-//	public static String getUrl(String url) {
-//		if (!isNormalUrl(url)) {
-//			return "http://" + url;
-//		} else {
-//			return url;
-//		}
-//	}
 
 	public static boolean isNormalUrl(String url) {
 		return (url != null && url.length() > 0 &&(url.startsWith("http://") || url.startsWith("https://")));

@@ -41,7 +41,6 @@ public final class CaptureActivity extends Activity implements
 	private CaptureActivityHandler handler;
 	private ViewfinderView viewfinderView;
 	private boolean hasSurface;
-	private IntentSource source;
 	private Collection<BarcodeFormat> decodeFormats;
 	private Map<DecodeHintType, ?> decodeHints;
 	private String characterSet;
@@ -77,7 +76,7 @@ public final class CaptureActivity extends Activity implements
 		// 保持Activity处于唤醒状态
 		Window window = getWindow();
 		window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		setContentView(R.layout.capture);
+		setContentView(R.layout.activity_capture);
 
 		hasSurface = false;
 
@@ -119,10 +118,11 @@ public final class CaptureActivity extends Activity implements
 			surfaceHolder.addCallback(this);
 		}
 
+
+
 		beepManager.updatePrefs();
 		inactivityTimer.onResume();
 
-		source = IntentSource.NONE;
 		decodeFormats = null;
 		characterSet = null;
 	}
@@ -219,7 +219,7 @@ public final class CaptureActivity extends Activity implements
 			Log.w(TAG, ioe);
 			displayFrameworkBugMessageAndExit();
 		} catch (RuntimeException e) {
-			Log.w(TAG, "Unexpected error initializing camera", e);
+			Log.w(TAG, "Unexpected error quitSynchronously camera", e);
 			displayFrameworkBugMessageAndExit();
 		}
 	}
